@@ -4,11 +4,11 @@ from flask import Flask, jsonify
 
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
-# a simple page that says hello
 @app.route('/')
 def index():
-    df = pd.read_csv("empenho_exemplo.csv", sep=";", encoding="iso-8859-1")
+    df = pd.read_csv("empenho_exemplo.csv", encoding='ISO-8859-1', sep=";")
     
     return jsonify(df.to_dict(orient="records"))
 
